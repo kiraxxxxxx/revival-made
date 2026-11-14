@@ -326,3 +326,22 @@ html:is(:lang(ja),:lang(zh-Hans)) .line__kv dd{font-size:19px}
 html:lang(ja) :is(.h1,.h2,.lead,.line h3,.mcard h3){word-break:auto-phrase}
 html:is(:lang(ja),:lang(zh-Hans)) .lbl{letter-spacing:.06em}
 html:lang(zh-Hans) .h1--hero{word-break:keep-all;overflow-wrap:anywhere}
+/* ---- 11/14 直し：ヘッダーが 1100〜1300px ではみ出す（v0.1 の言語切り替えで幅が増えた）→ 1360px 以下で詰める ---- */
+@media (max-width:1360px){
+  .hd__in{gap:16px}
+  .nav{gap:14px;font-size:14px}
+  .lang{font-size:12.5px}.lang>*{padding:4px 5px}
+  .hd__cta{padding-inline:14px}
+}
+/* 日本語は 1130px 前後まで収まらないので、メニューに畳む幅を 1100 → 1160px に上げる（中身は 1100px 以下の指定と同じ） */
+@media (max-width:1160px){
+  .nav{display:none}
+  .hd__cta{display:none}
+  .menu{display:block;margin-left:2px}
+  .lang{margin-left:auto}
+  body.menu-open .nav{display:flex;flex-direction:column;gap:0;position:fixed;inset:var(--hd) 0 0;background:var(--white);padding:14px 24px 120px;overflow:auto;font-size:22px;font-weight:600}
+  body.menu-open .nav a{padding:18px 0;border-bottom:1px dashed var(--line)}
+  body.menu-open{overflow:hidden}
+}
+/* 撮影者の表記（実写の右下に小さく） */
+.pic .credit{position:absolute;right:8px;bottom:8px;font-size:11px;font-weight:500;letter-spacing:.02em;line-height:1.4;background:rgba(15,30,25,.6);color:#fff;padding:2px 8px;border-radius:99px;pointer-events:none}
